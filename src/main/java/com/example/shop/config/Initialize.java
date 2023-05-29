@@ -25,6 +25,7 @@ public class Initialize {
 
     @PostConstruct
     public void initialize() {
+        int a = 0;
         Role adminRole = new Role();
         Role userRole = new Role();
         User admin = new User();
