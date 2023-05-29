@@ -1,0 +1,87 @@
+create table public.order_product
+(
+    order_id   bigint not null,
+    product_id bigint not null
+);
+
+alter table public.order_product
+    owner to postgres;
+
+create unique index order_product_pkey
+    on public.order_product (order_id, product_id);
+
+create unique index uk_729vil5pvmbprq6b1sf4en1ft
+    on public.order_product (product_id);
+
+create table public.orders
+(
+    id           bigint not null
+        primary key,
+    order_status smallint,
+    user_id      bigint
+);
+
+alter table public.orders
+    owner to postgres;
+
+create table public.products
+(
+    id          bigint           not null
+        primary key,
+    description text,
+    image_url   varchar(255),
+    name        varchar(255),
+    price       double precision not null
+);
+
+alter table public.products
+    owner to postgres;
+
+create table public.roles
+(
+    id   bigint not null
+        primary key,
+    name varchar(255)
+);
+
+alter table public.roles
+    owner to postgres;
+
+create table public.user_cart
+(
+    user_id    bigint not null,
+    product_id bigint not null,
+    primary key (user_id, product_id)
+);
+
+alter table public.user_cart
+    owner to postgres;
+
+create table public.user_roles
+(
+    user_id bigint not null,
+    role_id bigint not null,
+    primary key (user_id, role_id)
+);
+
+alter table public.user_roles
+    owner to postgres;
+
+create table public.users
+(
+    id       bigint not null
+        primary key,
+    address  varchar(255),
+    email    varchar(255)
+        constraint uk_6dotkott2kjsp8vw4d0m25fb7
+            unique,
+    name     varchar(255),
+    password varchar(255),
+    username varchar(255)
+        constraint uk_r43af9ap4edm43mmtq01oddj6
+            unique
+);
+
+alter table public.users
+    owner to postgres;
+

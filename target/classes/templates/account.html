@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Личный кабинет</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<header>
+    <div id="top-header">
+        <div class="container">
+            <ul class="header-links pull-left" style="margin-right: 15px">
+                <li><a href="/" id="shopName"> Онлайн магазин</a></li>
+            </ul>
+            <ul class="pull-left">
+                <li><a style="color: white;"  href="/account" id="account">Личный кабинет</a></li>
+            </ul>
+            <a href="/cart" class="header-links pull-right">
+                <i class="fa fa-shopping-cart"></i>
+                <span style="color: white">Корзина</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<div class="section">
+    <div id="notification"></div>
+    <div id="notification-auth"></div>
+    <div class="container dl">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>История заказов</h2>
+                <ul id="orderHistory">
+                </ul>
+            </div>
+
+            <div class="col-md-8">
+                <h2>Информация о пользователе</h2>
+                <div id="userInfo">
+                    <form id="updateForm" >
+
+                    <div class="billing-details">
+                        <div class="section-title">
+                        </div>
+                        <div class="form-group">
+                            <input class="input"  type="text" id="userName" name="name" placeholder="Имя">
+                        </div>
+                        <div class="form-group">
+                            <input class="input"  type="email" id="userEmail" name="email" placeholder="Почта">
+                        </div>
+                        <div class="form-group">
+                            <input class="input"  type="text" id="userAddress" name="address" placeholder="Адрес">
+                        </div>
+                        <div class="form-group">
+                        </div>
+                    </div>
+                        <div style="display: flex; justify-content: center ">
+                            <div>
+                                <button id="saveButton" class="loginButton">Сохранить</button>
+                            </div>
+                            <div>
+                                <button id="logoutButton" class="loginButton">Выйти из аккаунта</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <!-- FOOTER -->
+<footer id="footer">
+    <!-- bottom footer -->
+    <div id="bottom-footer" class="section">
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+							<span class="copyright">
+							</span>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /bottom footer -->
+</footer>
+<!-- /FOOTER -->
+
+<!-- jQuery Plugins -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script type="module" src="/js/account.js"></script>
+<script type="module" src="/js/export.js"></script>
+
+</body>
+</html>

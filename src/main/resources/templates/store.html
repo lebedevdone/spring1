@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Онлайн-Магазин</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<header>
+    <div id="top-header">
+        <div class="container">
+            <ul class="header-links pull-left" style="margin-right: 15px">
+                <li><a href="/" id="shopName"> Онлайн магазин</a></li>
+            </ul>
+            <ul class="pull-left">
+                <li><a style="color: white;" href="/account" id="account">Личный кабинет</a></li>
+            </ul>
+            <a href="/cart" class="header-links pull-right">
+                <i class="fa fa-shopping-cart"></i>
+                <span style="color: white">Корзина</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<div class="section">
+    <div id="notification"></div>
+    <div class="container dl">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="store-sort">
+                        <div>
+                            <label>
+                                Сортирровка:
+                                <select class="input-select">
+                                    <option value="0">А-Я</option>
+                                    <option value="1">Цена</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-8">
+                    <div class="d7">
+                        <form id="searchForm">
+                            <label>
+                                <input id="searchInput" type="search" placeholder="Искать здесь...">
+                            </label>
+                            <button type="submit"></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div id="store" class="col-md-12">
+                <div class="store-filter clearfix">
+
+                </div>
+                <div id="productTable" class="row">
+
+                </div>
+
+                <!-- Код модального окна -->
+                <div id="modal" class="modal">
+                    <div class="modal-content">
+                        <button id="closeButton" class="close">&times;</button>
+                        <p id="modal-message"></p>
+                        <div class="buttons" style="display: flex;justify-content: center;">
+                            <form action="/auth">
+                                <button type="submit" class="loginButton">Войти</button>
+                            </form>
+                            <form action="/register" >
+                                <button href="/register" class="registerButton">Зарегистрироваться</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="store-filter clearfix">
+                    <ul id="paginationContainer" class="store-pagination">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div id="bottom-footer" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+							<span class="copyright">
+							</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery Plugins -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script type="module" src="/js/store.js"></script>
+<script type="module" src="/js/export.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Онлайн-магазин</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<header>
+    <div id="top-header">
+        <div class="container">
+            <ul class="header-links pull-left" style="margin-right: 15px">
+                <li><a href="/" id="shopName"> Онлайн магазин</a></li>
+            </ul>
+            <ul class="pull-left">
+                <li><a style="color: white;" href="/account" id="account">Личный кабинет</a></li>
+            </ul>
+            <a href="/cart" class="header-links pull-right">
+                <i class="fa fa-shopping-cart"></i>
+                <span style="color: white">Корзина</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+
+<div class="section">
+    <div id="notification"></div>
+    <div class="container dl">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="billing-details">
+                    <div class="section-title">
+                        <h3 class="title">Детали доставки</h3>
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="text" id="userName" name="first-name" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="email" id="userEmail" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="text" id="userAddress" name="address" placeholder="Address">
+                    </div>
+                    <div class="form-group">
+
+                    </div>
+                </div>
+                <!-- /Billing Details -->
+
+            </div>
+
+            <!-- Order Details -->
+            <div class="col-md-7 order-details">
+                <div class="section-title text-center">
+                    <h3 class="title">Ваш заказ</h3>
+                </div>
+                <div class="order-summary">
+                    <div class="row order-col">
+                        <div class="col-md-6"><strong>Наименование</strong></div>
+                        <div class="col-md-6"><strong>Цена</strong></div>
+                    </div>
+                    <div id="orderProducts" class="order-products">
+
+                    </div>
+                    <div class="order-col">
+                        <div><strong>Всего</strong></div>
+                        <div><strong id="totalPrice" class="order-total">0</strong></div>
+                    </div>
+                </div>
+                <a href="#" id="createOrder" class="primary-btn order-submit">Создать заказ</a>
+            </div>
+
+            <!-- /Order Details -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<!-- FOOTER -->
+<footer id="footer">
+
+    <!-- bottom footer -->
+    <div id="bottom-footer" class="section">
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+						
+							<span class="copyright">
+							</span>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /bottom footer -->
+</footer>
+<!-- /FOOTER -->
+
+<!-- jQuery Plugins -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script type="module" src="/js/cart.js"></script>
+<script type="module" src="/js/export.js"></script>
+
+</body>
+</html>

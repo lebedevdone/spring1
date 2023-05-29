@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+        <meta charset="UTF-8">
+    <title>Admin panel</title>
+</head>
+<body style="height: 100vh">
+<header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
+    <div class="container-fluid d-flex align-items-center">
+        <h1 class="d-flex align-items-center fs-4 text-white mb-0"
+            id="superInformation">
+            Панель администратора
+        </h1>
+        <a href="/logout" class="ms-auto link-secondary text-decoration-none" hreflang="ar">Выход</a>
+    </div>
+</header>
+<!--общий контейнер для всего-->
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <!--контейнер для боковой панели Юзер Админ-->
+        <div class="col-md-2 g-0 py-3">
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" id="admin-nav-link" data-bs-toggle="tab"
+                       data-bs-target="#admin-panel" type="button" role="tab" aria-controls="admin-panel"
+                       aria-selected="true">Пользователи</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="user-nav-link" data-bs-toggle="tab" data-bs-target="#user-panel"
+                       type="button" role="tab" aria-controls="user-panel" aria-selected="false">Товары</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="order-nav-link" data-bs-toggle="tab" data-bs-target="#order-panel"
+                       type="button" role="tab" aria-controls="order-panel" aria-selected="false">Заказы</a>
+                </li>
+            </ul>
+        </div>
+        <!--контейнер для содержимого кнопок боковой панели-->
+        <div class="col-md-10 bg-light gx-5 py-3 tab-content">
+            <!--контейнер для правой части экрана-->
+            <div class="tab-pane fade show active" id="admin-panel" role="tabpanel"
+                 aria-labelledby="admin-nav-link"
+                 tabindex="0">
+                <!-- список вкладок таблиц-->
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#UserTable" data-bs-toggle="tab"
+                           data-bs-target="#UserTable" type="button" role="tab" aria-controls="users-table-pane"
+                           aria-selected="true">Пользователи</a>
+                    </li>
+                    <li class="nav-item nav-tabs">
+                        <a class="nav-link" data-bs-toggle="tab" href="#NewUser">Добавить пользователя</a>
+                    </li>
+                </ul>
+                <!--контейнер для содержимого вкладок таблиц-->
+                <div class="tab-content" role="tabpanel">
+                    <!--содержимое вкладки Users Table-->
+                    <div class="tab-pane fade show active" id="UserTable" role="tabpanel"
+                         aria-labelledby="users-table-tab" tabindex="0">
+                        <div class="card rounded-0">
+                            <h5 class="card-header">Все пользователи</h5>
+
+                            <table class="table table-striped" id="allUsersTable">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Имя</th>
+                                    <th scope="col">Почта</th>
+                                    <th scope="col">Логин</th>
+                                    <th scope="col">Роль</th>
+                                    <th scope="col">Редактировать</th>
+                                    <th scope="col">Удалить</th>
+                                </tr>
+                                <tr>
+                                </thead>
+                                <tr>
+                                    <tbody id="allUsersTableBody">
+                                    </tbody>
+
+                                    <!--модальное окно редактировать юзера-->
+                                    <div class="modal fade" id="modalEdit">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form id="modalEditForm">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Редактировать пользователя</h5>
+                                                        <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal"></button>
+                                                    </div>
+                                                    <div class="modal-body text-center">
+                                                        <div class="form-group required">
+                                                            <div class="controls">
+                                                                <p>
+                                                                    <label for="idEditUser">
+                                                                        <strong>ID</strong>
+                                                                        <input class="form-control" name="id"
+                                                                               id="idEditUser"
+                                                                               disabled>
+                                                                    </label>
+                                                                </p>
+                                                                <p>
+                                                                    <label for="editUserFirstName">
+                                                                        <strong>Имя</strong>
+                                                                        <input class="form-control"
+                                                                               name="name"
+                                                                               id="editUserFirstName"
+                                                                               placeholder="First name"
+                                                                               required>
+                                                                    </label>
+                                                                </p>
+                                                                <p>
+                                                                    <label for="editUserEmail">
+                                                                        <strong>Почта</strong>
+                                                                        <input class="form-control"
+                                                                               name="email"
+                                                                               id="editUserEmail"
+                                                                               placeholder="Почта"
+                                                                               required>
+                                                                    </label>
+                                                                </p>
+                                                                <p>
+                                                                    <label for="editUserAddress">
+                                                                        <strong>Адрес</strong>
+                                                                        <input class="form-control"
+                                                                               name="address"
+                                                                               id="editUserAddress"
+                                                                               placeholder="Адрес"
+                                                                               required>
+                                                                    </label>
+                                                                </p>
+                                                                <label class="container-fluid col-6">
+                                                                    <strong>Роль</strong>
+                                                                    <select id="rolesEdit" class="form-select"
+                                                                            name="roles"
+                                                                            multiple size="2">
+                                                                    </select>
+                                                                </label>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" id="closeEditModalWindow"
+                                                                        class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Закрыть
+                                                                </button>
+                                                                <button type="submit" id="editUser"
+                                                                        class="btn btn-primary">Редактировать
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--модальное окно удалить юзера-->
+                                    <div class="modal fade" id="modalDelete" tabindex="-1"
+                                         data-bs-backdrop="static" data-bs-keyboard="false"
+                                         aria-labelledby="modelDelete"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Удалить пользователя</h5>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form id="modalDeleteForm" name="modalDeleteForm">
+                                                        <div class="modal-body text-center">
+                                                            <div class="form-group required">
+                                                                <div class="controls">
+                                                                    <p>
+                                                                        <label for="idDeleteUser">
+                                                                            <strong>ID</strong>
+                                                                            <input class="form-control" name="id"
+                                                                                   id="idDeleteUser"
+                                                                                   disabled>
+                                                                        </label>
+                                                                    </p>
+                                                                    <p>
+                                                                        <label for="deleteUserName">
+                                                                            <strong>Имя</strong>
+                                                                            <input class="form-control"
+                                                                                   name="name"
+                                                                                   id="deleteUserName"
+                                                                                   placeholder="Имя"
+                                                                                   disabled>
+                                                                        </label>
+                                                                    </p>
+                                                                    <p>
+                                                                        <label for="deleteUserEmail">
+                                                                            <strong>Почта</strong>
+                                                                            <input class="form-control"
+                                                                                   name="email"
+                                                                                   id="deleteUserEmail"
+                                                                                   placeholder="Почта"
+                                                                                   disabled>
+                                                                        </label>
+                                                                    </p>
+                                                                    <p>
+                                                                        <label for="deleteUserAddress">
+                                                                            <strong>Адрес</strong>
+                                                                            <input class="form-control"
+                                                                                   name="address"
+                                                                                   id="deleteUserAddress"
+                                                                                   placeholder="Адрес"
+                                                                                   disabled>
+                                                                        </label>
+                                                                    </p>
+                                                                    <label class="container-fluid col-6"
+                                                                    >
+                                                                        <strong>Роль</strong>
+                                                                        <select id="rolesDelete" name="roles"
+                                                                                class="form-select"
+                                                                                multiple size="2" disabled>
+                                                                        </select>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                            data-bs-dismiss="modal"
+                                                                            id="close">
+                                                                        Закрыть
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-danger"
+                                                                            data-bs-dismiss="modal"
+                                                                            id="deleteUserButton">
+                                                                        Удалить
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <!--содержимое вкладки New User-->
+                    <div class="tab-pane fade" id="NewUser" role="tabpanel" aria-labelledby="new-users-tab"
+                         tabindex="0">
+                        <div class="card rounded-0">
+                            <h5 class="card-header">Новый пользователь</h5>
+                            <div class="form-justify-content-center mx-auto col-4">
+                                <div class="card-body text-center">
+                                    <form id="formNewUser" name="formNewUser" th:align="center">
+                                        <p>
+                                            <label class="container-fluid" for="newUserUsername">
+                                                <strong>Логин</strong>
+                                                <input class="form-control" type="text" name="username"
+                                                       id="newUserUsername" placeholder="Имя"
+                                                       required>
+                                            </label>
+                                        </p>
+                                        <p>
+                                            <label class="container-fluid" for="newUserName">
+                                                <strong>Имя</strong>
+                                                <input class="form-control" type="text" name="name"
+                                                       id="newUserName" placeholder="Имя"
+                                                       required>
+                                            </label>
+                                        </p>
+                                        <p>
+                                            <label class="container-fluid" for="newUserEmail">
+                                                <strong>Почта</strong>
+                                                <input class="form-control" type="text" name="email"
+                                                       id="newUserEmail" placeholder="Почта"
+                                                       required>
+                                            </label>
+                                        </p>
+                                        <p>
+                                            <label class="container-fluid" for="newUserPassword">
+                                                <strong>Пароль</strong>
+                                                <input class="form-control" type="password" name="password"
+                                                       id="newUserPassword" placeholder="Пароль"
+                                                       required>
+                                            </label>
+                                        </p>
+                                        <p>
+                                            <label class="container-fluid" for="newUserAddress">
+                                                <strong>Адрес</strong>
+                                                <input class="form-control" type="text" name="address"
+                                                       id="newUserAddress" placeholder="Адрес"
+                                                       required>
+                                            </label>
+                                        </p>
+
+                                        <label class="container-fluid">
+                                            <strong>Роль</strong>
+                                            <select multiple="multiple" size="2" name="roles"
+                                                    property="rolesOfSelectedUser"
+                                                    id="newUserRoles"
+                                                    class="form-control">
+                                            </select>
+                                        </label>
+                                        <button type="submit" id="createNewUser" class="btn btn-success">Создать
+                                            пользователя
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--контейнер для товаров-->
+            <div class="tab-pane fane" id="user-panel" role="tabpanel"
+                 aria-labelledby="user-nav-link" tabindex="0">
+
+                <div class="tab-content" role="tabpanel" aria-labelledby="admin-nav-link">
+                    <div class="tab-pane fade show active" role="tabpanel" tabindex="0">
+                        <div class="card rounded-0">
+                            <div id="notification-auth"></div>
+                            <div class="modal fade" id="modalCreateProduct">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form id="modalCreateProductForm">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Создать товар</h5>
+                                                <button type="button" class="btn-close"
+                                                        data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <div class="form-group required">
+                                                    <div class="controls">
+                                                        <p>
+                                                            <label for="nameProduct">
+                                                                <strong>Наименование</strong>
+                                                                <input class="form-control" name="name"
+                                                                       id="nameProduct"
+                                                                       required>
+                                                            </label>
+                                                        </p>
+                                                        <p>
+                                                            <label for="priceProduct">
+                                                                <strong>Цена</strong>
+                                                                <input type="number" class="form-control" name="price"
+                                                                       id="priceProduct"
+                                                                       required>
+                                                            </label>
+                                                        </p>
+                                                        <p>
+                                                            <label for="descriptionProduct">
+                                                                <strong>Описание</strong>
+                                                                <input class="form-control" name="description"
+                                                                       id="descriptionProduct"
+                                                                       required>
+                                                            </label>
+                                                        </p>
+                                                        <p>
+                                                            <label for="imageProduct">
+                                                                <strong>Ссылка на изображение</strong>
+                                                                <input class="form-control" name="imageUrl"
+                                                                       id="imageProduct"
+                                                                       required>
+                                                            </label>
+                                                        </p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" id="closeModalCreateProduct"
+                                                                class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Закрыть
+                                                        </button>
+                                                        <button type="submit" id="createProduct"
+                                                                class="btn btn-primary">Создать
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="modalUpdateProduct">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form id="modalUpdateProductForm">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Редактировать товар</h5>
+                                                <button type="button" class="btn-close"
+                                                        data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <div class="form-group required">
+                                                    <div class="controls">
+                                                        <p>
+                                                            <label for="idUpdateProduct">
+                                                                <strong>Id</strong>
+                                                                <input class="form-control" name="id"
+                                                                       id="idUpdateProduct"
+                                                                       disabled>
+                                                            </label>
+                                                        </p>
+                                                        <p>
+                                                            <label for="nameUpdateProduct">
+                                                                <strong>Наименование</strong>
+                                                                <input class="form-control" name="name"
+                                                                       id="nameUpdateProduct"
+                                                                       required>
+                                                            </label>
+                                                        </p>
+                                                        <p>
+                                                            <label for="priceUpdateProduct">
+                                                                <strong>Цена</strong>
+                                                                <input type="number" class="form-control" name="price"
+                                                                       id="priceUpdateProduct"
+                                                                       required>
+                                                            </label>
+                                                        </p>
+                                                        <p>
+                                                            <label for="descriptionUpdateProduct">
+                                                                <strong>Описание</strong>
+                                                                <input class="form-control" name="description"
+                                                                       id="descriptionUpdateProduct"
+                                                                       required>
+                                                            </label>
+                                                        </p>
+                                                        <p>
+                                                            <label for="imageUpdateProduct">
+                                                                <strong>Ссылка на изображение</strong>
+                                                                <input class="form-control" name="imageUrl"
+                                                                       id="imageUpdateProduct"
+                                                                       required>
+                                                            </label>
+                                                        </p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" id="closeModalUpdateProduct"
+                                                                class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Закрыть
+                                                        </button>
+                                                        <button type="submit" id="updateProduct"
+                                                                class="btn btn-primary">Редактировать
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="modalDeleteProduct">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form id="modalDeleteProductForm">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Удалить товар</h5>
+                                                <button type="button" class="btn-close"
+                                                        data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <div class="form-group required">
+                                                    <div class="controls">
+                                                        <p>
+                                                            <label for="nameDeleteProduct">
+                                                                <strong>Наименование</strong>
+                                                                <input class="form-control" name="name"
+                                                                       id="nameDeleteProduct"
+                                                                       disabled>
+                                                            </label>
+                                                        </p>
+                                                        <p>
+                                                            <label for="priceDeleteProduct">
+                                                                <strong>Цена</strong>
+                                                                <input type="number" class="form-control" name="price"
+                                                                       id="priceDeleteProduct"
+                                                                       disabled>
+                                                            </label>
+                                                        </p>
+                                                        <p>
+                                                            <label for="descriptionDeleteProduct">
+                                                                <strong>Описание</strong>
+                                                                <input class="form-control" name="description"
+                                                                       id="descriptionDeleteProduct"
+                                                                       disabled>
+                                                            </label>
+                                                        </p>
+                                                        <p>
+                                                            <label for="imageDeleteProduct">
+                                                                <strong>Ссылка на изображение</strong>
+                                                                <input class="form-control" name="imageUrl"
+                                                                       id="imageDeleteProduct"
+                                                                       disabled>
+                                                            </label>
+                                                        </p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" id="closeModalDeleteProduct"
+                                                                class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Закрыть
+                                                        </button>
+                                                        <button type="submit" id="deleteProduct"
+                                                                class="btn btn-primary">Удалить
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="containerbs">
+                                <h5 class="card-header">Список всех товаров</h5>
+                                <a id="createProductButton" data-bs-toggle="modal"
+                                   data-bs-target="#modalCreateProduct" class="button21 float-left" tabindex="0">Создать</a>
+                            </div>
+                            <table class="table table-striped" id="currentUserTable">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Изображение</th>
+                                    <th scope="col">Наименование</th>
+                                    <th scope="col">Цена</th>
+                                    <th scope="col">Редактировать</th>
+                                    <th scope="col">Удалить</th>
+                                </tr>
+                                </thead>
+                                <tbody id="currentUserTableBody">
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- контейнер для заказов -->
+            <div class="tab-pane fane" id="order-panel" role="tabpanel"
+                 aria-labelledby="user-nav-link" tabindex="0">
+                <div style="display: flex; align-content: center">
+                    <h2>Заказы</h2>
+                    <div class="col-lg-8">
+                        <div class="d7">
+                            <form id="searchForm">
+                                <label>
+                                    <input id="searchInput" type="search" placeholder="Номер заказа">
+                                </label>
+                                <button type="submit"></button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tab-content" role="tabpanel" aria-labelledby="admin-nav-link">
+                    <div class="tab-pane fade show active" role="tabpanel" tabindex="0">
+                        <div class="card rounded-0">
+                            <div class="modal fade" id="modalUpdateOrder">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form id="modalUpdateOrderForm">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Редактировать заказ</h5>
+                                                <button type="button" class="btn-close"
+                                                        data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <div class="form-group required">
+                                                    <div class="controls">
+                                                        <p>
+                                                            <label for="idUpdateOrder">
+                                                                <strong>Id</strong>
+                                                                <input class="form-control" name="id"
+                                                                       id="idUpdateOrder"
+                                                                       disabled>
+                                                            </label>
+                                                        </p>
+                                                        <p>
+                                                            <label for="nameUpdateOrder">
+                                                                <strong>ФИО</strong>
+                                                                <input class="form-control" name="name"
+                                                                       id="nameUpdateOrder"
+                                                                       disabled>
+                                                            </label>
+                                                        </p>
+                                                        <p>
+                                                            <label for="priceUpdateOrder">
+                                                                <strong>Цена</strong>
+                                                                <input type="number" class="form-control" name="price"
+                                                                       id="priceUpdateOrder"
+                                                                       disabled>
+                                                            </label>
+                                                        </p>
+                                                        <p>
+                                                            <label for="addressUpdateOrder">
+                                                                <strong>Адрес</strong>
+                                                                <input class="form-control" name="address"
+                                                                       id="addressUpdateOrder"
+                                                                       disabled>
+                                                            </label>
+                                                        </p>
+                                                        <label class="container-fluid">
+                                                            <strong>Статус</strong>
+                                                            <select size="5" name="status"
+                                                                    property="statusOrderSelected"
+                                                                    id="status"
+                                                                    class="form-control">
+                                                            </select>
+                                                        </label>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" id="closeModalUpdateOrder"
+                                                                class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Закрыть
+                                                        </button>
+                                                        <button type="submit" id="updateOrder"
+                                                                class="btn btn-primary">Редактировать
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <h5 class="card-header">Список всех заказов</h5>
+                            <table class="table table-striped" id="currentOrderTable">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Имя</th>
+                                    <th scope="col">Адрес</th>
+                                    <th scope="col">Сумма</th>
+                                    <th scope="col">Статус</th>
+                                    <th scope="col">Заказ</th>
+                                    <th scope="col">Редактировать</th>
+                                    <th scope="col">Удалить</th>
+                                </tr>
+                                </thead>
+                                <tbody id="currentOrderTableBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script type="module" src="/js/admin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

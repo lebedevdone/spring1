@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title id="pageTitle">Онлайн Магазин</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<header>
+    <div id="top-header">
+        <div class="container">
+            <div id="notification"></div>
+            <ul class="header-links pull-left" style="margin-right: 15px">
+                <li><a href="/" id="shopName"> Онлайн магазин</a></li>
+            </ul>
+            <ul class="pull-left">
+                <li><a style="color: white;"  href="/account" id="account">Личный кабинет</a></li>
+            </ul>
+            <a href="/cart" class="header-links pull-right">
+                <i class="fa fa-shopping-cart"></i>
+                <span style="color: white">Корзина</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+
+
+<div class="section">
+    <div class="container dl">
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <button id="closeButton" class="close">&times;</button>
+                <p id="modal-message"></p>
+                <div class="buttons" style="display: flex;justify-content: center;">
+                    <form action="/auth">
+                        <button type="submit" class="loginButton">Войти</button>
+                    </form>
+                    <form action="/register" >
+                        <button href="/register" class="registerButton">Зарегистрироваться</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+        <div class="row">
+            <!-- Product main img -->
+            <div class="col-md-3 col-md-push">
+                <div id="product-main-img">
+                    <div class="product-preview">
+                        <img id="productImage" alt="" src=""></img>
+                    </div>
+                </div>
+            </div>
+            <!-- /Product main img -->
+
+            <!-- Product thumb imgs -->
+            <div class="col-md-2  col-md-pull-5">
+
+            </div>
+            <!-- /Product thumb imgs -->
+
+            <!-- Product details -->
+            <div class="col-md-5">
+                <div class="product-details">
+                    <h2 id="productName" class="product-name"></h2>
+                    <div>
+                        <h3 id="productPrice" class="product-price"></h3>
+                    </div>
+                    <p id="productDescription"></p>
+                    <br>
+                    <div class="add-to-cart">
+                        <button id="addToCartButton" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>В корзину</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /Product details -->
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+<!-- FOOTER -->
+<footer id="footer">
+
+    <!-- bottom footer -->
+    <div id="bottom-footer" class="section">
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+						
+							<span class="copyright">
+							</span>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /bottom footer -->
+</footer>
+<!-- /FOOTER -->
+
+
+<!-- jQuery Plugins -->
+<script type="module" src="/js/product.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script type="module" src="/js/export.js"></script>
+
+</body>
+</html>
